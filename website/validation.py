@@ -140,8 +140,6 @@ def password_validation(password):
     else:
         return True, None
 
-
-
 def all_validation_albums(
         title,
         creator,
