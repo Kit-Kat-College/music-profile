@@ -10,4 +10,4 @@ ENV/
 idea/
 
 # Ignore database
-database.db
+!/website/database.db
