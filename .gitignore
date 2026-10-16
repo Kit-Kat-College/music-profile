@@ -10,5 +10,5 @@ ENV/
 idea/
 
 # Ignore database
-!/website/database.db
-!/website/catalogues.py
+database.db/
+catalogues.py/
