@@ -1,4 +1,3 @@
 
 # Hide data related files
-/website/db.py
 /website/database.db
