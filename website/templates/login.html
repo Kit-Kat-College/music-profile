@@ -1,0 +1,30 @@
+{%extends "base.html"%}
+
+{%block title%}Login{%endblock%}
+
+{%block content%}
+
+<form method="POST" class="form">
+    <h1>🎶 Login to Save Albums 🎶</h1>
+    <div class="inputs">
+        <a class="input_headings">Username:</a>
+        <input
+                name="username"
+                type="text"
+                id="username"
+                required
+        >
+
+        <a class="input_headings">Password:</a>
+        <input
+                name="password"
+                type="password"
+                id="password"
+                required
+        >
+
+         <button type="submit" class="form_btn">Login</button>
+
+    </div>
+</form>
+{%endblock%}

@@ -1,0 +1,398 @@
+{%extends "base.html"%}
+
+{%block title%}Account{%endblock%}
+
+{%block content%}
+
+    <div class="account-page">
+        <!-- LEFT SIDE -->
+        <section class="account-left">
+        <h1 class="section-header">Profile Details</h1>
+            <!-- Profile Picture -->
+            <div class="account-detail profile-section">
+
+                <div class="profile-picture-container">
+                    <img src="{{ user['profile_picture'] }}"
+                         alt="Profile Picture">
+                </div>
+
+                <form method="POST"
+                      enctype="multipart/form-data"
+                      class="account-users-form">
+
+                    <input
+                        type="hidden"
+                        name="form_type"
+                        value="profile-picture-change"
+                    >
+
+                    <div id="profile-picture-area" style="display: none;">
+
+                        <input
+                            type="file"
+                            name="profile-picture"
+                            id="profile-picture"
+                            required
+                        >
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="account_btn"
+                        id="profile-picture-button"
+                        onclick="changeProfilePicture()"
+                    >
+                        Change Profile Picture
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <!-- Username -->
+            <div class="account-detail">
+
+                <form method="POST" class="account-users-form">
+
+                    <h1>{{ user["username"] }}</h1>
+
+                    <div id="username-area" style="display: none;">
+
+                        <input
+                            type="text"
+                            name="username"
+                            id="username"
+                            required
+                        >
+
+                    </div>
+
+                    <input
+                        type="hidden"
+                        name="form_type"
+                        value="username-change"
+                    >
+
+                    <button
+                        type="button"
+                        class="account_btn change-btn"
+                        id="username-button"
+                        onclick="changeUsername()"
+                    >
+                        Change Username
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <!-- DOB -->
+            <div class="account-detail dob-section">
+
+                <p><b>Date of Birth:</b><br> {{ user["DOB"] }}</p>
+
+            </div>
+
+
+            <!-- Email -->
+            <div class="account-detail">
+
+                <form method="POST" class="account-users-form">
+
+                    <p><b>Email:</b><br> {{ user["email"] }}</p>
+
+                    <div id="email-area" style="display: none;">
+
+                        <input
+                            type="email"
+                            name="email"
+                            id="email"
+                            required
+                        >
+
+                    </div>
+
+                    <input
+                        type="hidden"
+                        name="form_type"
+                        value="email-change"
+                    >
+
+                    <button
+                        type="button"
+                        class="account_btn change-btn"
+                        id="email-button"
+                        onclick="changeEmail()"
+                    >
+                        Change Email
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <!-- Password -->
+            <div class="account-detail">
+
+                <form method="POST" class="account-users-form">
+
+                    <div id="password-area" style="display: none;">
+
+                        <input
+                            type="password"
+                            name="new_password"
+                            id="new_password"
+                            required
+                        >
+
+                    </div>
+
+                    <input
+                        type="hidden"
+                        name="form_type"
+                        value="password-change"
+                    >
+
+                    <button
+                        type="button"
+                        class="account_btn change-btn"
+                        id="password-button"
+                        onclick="changePassword()"
+                    >
+                        Change Password
+                    </button>
+
+                </form>
+
+            </div>
+
+            <!-- Account Deletion -->
+            <div class="account-detail">
+
+                <form method="POST" class="account-users-form">
+
+                    <div id="account-deletion-area" style="display: none;">
+
+                        <input
+                            type="text"
+                            name="account-deletion"
+                            id="account-deletion"
+                            placeholder="Type exactly 'DELETE' to confirm"
+                            required
+                        >
+
+                    </div>
+
+                    <input
+                        type="hidden"
+                        name="form_type"
+                        value="account-deletion"
+                    >
+
+                    <button
+                        type="button"
+                        class="deletion_button default-color"
+                        id="account-deletion-button"
+                        onclick="deleteAccount()"
+                    >
+                        Delete Account
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+        <!-- Middle -->
+        <section class="account_middle">
+
+            <h1 class="section-header">Change Album Details</h1>
+
+            <div id="selected-album">
+                <p class="none_selected">No album selected</p>
+            </div>
+
+           <form method="POST"
+              enctype="multipart/form-data"
+              class="form"
+              id="album-edit-form"
+              style="display: none;"
+           >
+               <div class="inputs">
+                    <input
+                        type="hidden"
+                        name="form_type"
+                        value="album-change"
+                    >
+
+                    <input
+                        type="hidden"
+                        name="album_id"
+                        id="album_id"
+                    >
+
+                    <!-- Title -->
+                    <a class="input_headings">Title:</a>
+                    <input
+                        name="title"
+                        type="text"
+                        id="title"
+                    >
+
+                    <!-- Creator -->
+                    <a class="input_headings">Creator:</a>
+                    <input
+                        name="creator"
+                        type="text"
+                        id="creator"
+                    >
+
+                    <!-- Creation Date -->
+                    <a class="input_headings">Creation Date:</a>
+                    <input
+                        name="creation_date"
+                        type="date"
+                        id="creation_date"
+                    >
+
+                    <!-- Number of Tracks -->
+                    <a class="input_headings">Number of Tracks:</a>
+                    <input
+                        name="track_count"
+                        type="number"
+                        id="track_count"
+                    >
+
+                    <!-- Cover Photo -->
+                    <a class="input_headings">Cover Photo:</a>
+                    <a class="photo_warning">
+                        500x500 Min | 4096x4096 Max
+                    </a>
+
+                    <input
+                        type="file"
+                        name="cover"
+                        id="cover"
+                    >
+
+                   <div class="account_buttons">
+                           <!-- Submit everything -->
+                            <button type="submit">
+                                Submit Album
+                            </button>
+                           <!-- Deselect selected album -->
+                           <button type="button" onclick="deselectAlbum()">
+                                Deselect Album
+                           </button>
+                   </div>
+
+                   <div>
+                        <form>
+                            <input
+                                type="hidden"
+                                name="form_type"
+                                value="delete-from-profile"
+                            >
+                            <button type="submit">
+                                Delete from Profile
+                            </button>
+                        </form>
+
+                        <!-- Delete Album -->
+                        <div class="account-detail">
+
+                            <form method="POST" class="account-users-form">
+
+                                <div id="album-deletion-area" style="display: none;">
+
+                                    <input
+                                        type="text"
+                                        name="album-deletion"
+                                        id="album-deletion"
+                                        placeholder="Type exactly 'DELETE' to confirm"
+                                        required
+                                    >
+
+                                </div>
+
+                                <input
+                                    type="hidden"
+                                    name="form_type"
+                                    value="delete-from-database"
+                                >
+
+                                <button
+                                    type="button"
+                                    class="deletion_button default-color"
+                                    id="album-deletion-button"
+                                    onclick="deleteAlbum()"
+                                >
+                                    Delete Album
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                   </div>
+               </div>
+            </form>
+
+        </section>
+
+        <!-- RIGHT -->
+        <section class="account-right">
+
+            <h1 class="section-header">Saved Albums</h1>
+
+            <div id="album-list">
+
+             {% for album in saved_albums %}
+
+                <div
+                    class="album-row"
+                    onclick='selectAlbum(
+                        {{ album["id"] }},
+                        {{ album["cover"]|tojson }},
+                        {{ album["title"]|tojson }},
+                        {{ album["creator"]|tojson }},
+                        {{ album["track_count"] }},
+                        {{ album["creation_date"]|tojson }}
+                    )'
+                >
+
+                    <img
+                        src="{{ album["cover"] }}"
+                        alt="Album Cover"
+                    >
+
+                    <section class="album-info">
+
+                        <h2>{{ album["title"]|truncate(36, True, "...") }}</h2>
+                        <p>{{ album["creator"]|truncate(44, True, "...") }}</p>
+
+                        <p>
+                            {{ album["track_count"] }} tracks
+                            •
+                            {{ album["creation_date"] }}
+                        </p>
+
+                    </section>
+
+                </div>
+
+                {% endfor %}
+
+                <!-- See More Button -->
+
+            </div>
+
+        </section>
+    </div>
+
+{%endblock%}

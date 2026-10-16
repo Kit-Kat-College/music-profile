@@ -1,0 +1,63 @@
+{%extends "base.html"%}
+
+{%block title%}Album Input{%endblock%}
+
+{%block content%}
+
+<form method="POST" class="form" enctype="multipart/form-data">
+    <h1>🎵 Enter Album Details 🎵</h1>
+    <div class="inputs">
+         <!-- Title -->
+        <a class="input_headings">Title:</a>
+        <input
+                name="title"
+                type="text"
+                id="title"
+                required
+        >
+
+        <!-- Creator -->
+        <a class="input_headings">Creator:</a>
+        <input
+                name="creator"
+                type="text"
+                id="creator"
+                required
+        >
+
+        <!-- Creation Date -->
+        <a class="input_headings">Creation Date:</a>
+        <input
+                name="creation_date"
+                type="DATE"
+                id="creation_date"
+                required
+        >
+
+        <!-- Number of Tracks -->
+        <a class="input_headings">Number of Tracks:</a>
+        <input
+                name="track_count"
+                type="number"
+                id="track_count"
+                required
+        >
+
+        <!-- Cover Photo -->
+        <a class="input_headings">Cover Photo</a>
+        <a class="photo_warning">500x500 Min | 4096x4096 Max</a>
+        <input
+                name="cover"
+                type="file"
+                id="cover"
+        >
+
+         <!-- Submit everything -->
+         <button type="submit" class="form_btn">Submit Album</button>
+
+    </div>
+</form>
+
+</section>
+
+{%endblock%}

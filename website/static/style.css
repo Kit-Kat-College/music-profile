@@ -1,0 +1,575 @@
+:root { /* Reusable colours */
+    --nav_bar_background: #AFAFAF;
+    --nav_bar_breaker: #E5E7EB;
+    --text: #000000;
+    --alt_text: #ffffff;
+
+    --delete_button_background_unavailable: #591713;
+    --delete_button_background: #bf0202;
+
+    --nav_button_background: #bf0202;
+    --nav_button_background_hover: #9a0606;
+
+
+    --flash-success-background-color: #14532D;
+    --flash-success-text-color: #DCFCE7;
+    --flash-success-border-color: #22C55E;
+
+    --flash-information-background-color: #713F12;
+    --flash-information-text-color: #FEF3C7;
+    --flash-information-border-color: #FACC15;
+
+    --flash-error-background-color: #7F1D1D;
+    --flash-error-text-color: #FEE2E2;
+    --flash-error-border-color: #FF4D4D;
+
+
+}
+
+html, body { /* Makes the navbar cover the full screen */
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: var(--nav_bar_background);
+    display: flex;
+    justify-content: space-between; /* Puts left links on the left of the screen and the right on the right */
+    padding: 25px 35px; /* Overall space around links, space left/right of links */
+    align-items: center; /* Center of the navbar */
+    box-sizing: border-box;
+    border-bottom: 3px solid var(--nav_bar_breaker);
+}
+
+.nav-links-left,
+.nav-links-right {
+    display: flex;
+    gap: 80px; /* Gap between right links */
+}
+
+.navbar a {
+    align-items: center; /* Center of the navbar */
+    font-family: "Inter", sans-serif; /* Font of the navbar text */
+    color: var(--text);
+    text-decoration: none; /* Removes underline */
+    font-size: 1.5rem;
+    transition: transform 0.3s ease; /* Smooth animation in 0.3 seconds */
+}
+
+.btn-nav { /* Button in navbar */
+    display: inline-block;
+    padding: 8px 20px; /* Button space around button text */
+    background-color: var(--nav_button_background); !important;
+    color: var(--alt_text)!important; !important;
+    text-decoration: none;
+    border-radius: 8px; /* Button corners */
+
+    transition-property: background-color, transform !important;
+    transition-duration: 0.25s, 0.3s !important;
+    transition-timing-function: ease, ease !important;
+}
+
+
+.btn-nav:hover {
+    background-color: var(--nav_button_background_hover);
+    transform: translateY(-2px);
+}
+
+.navbar a:not(.btn-nav):hover {
+    transform: translateY(-7px); /* Move text up the navbar*/
+    font-weight: 500; /* semi-bold */
+}
+
+.navbar a:not(.btn-nav)::after {
+    content: ""; /* Creates the "after" element */
+    display: block; /* Makes the ::after element behave like a block | creates underline */
+    width: 0; /* Hides underline when not hovering */
+    height: 2px; /* thickness of the underline */
+    background: currentColor; /* Gives the underline the same colour as the text */
+    margin: 5px auto 0; /* creates the gap between the text and underline | line grows outward from the centre */
+    transition: width 0.3s ease;
+}
+
+/* Keeps the link raised and underlined / button changed colour and raised when on page */
+.navbar a:not(.btn-nav):hover::after {
+    width: 80%;
+}
+
+.navbar a.active {
+    transform: translateY(-7px);
+    font-weight: 500;
+}
+
+.navbar a.active::after {
+    width: 80%;
+}
+
+.btn-nav.active-btn {
+    background-color: var(--nav_button_background_hover);
+    transform: translateY(-2px);
+}
+
+.account-page {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.account-left {
+    text-align: left;
+}
+
+.account-right {
+    text-align: right;
+}
+
+.profile-picture-container {
+    width: 175px; /* Width of the pfp container */
+    height: 175px; /* Height of the pfp container */
+    overflow: hidden; /* Hides the edges */
+    border-radius: 50%; /* Turns the photo into a circle */
+    margin: 0 auto; /* Centres the pfp */
+    border: 1.8px solid var(--nav_bar_background);
+}
+
+@media (min-width: 1080px) {
+    .profile-picture-container {
+        width: 185px;
+        height: 185px;
+    }
+}
+
+.profile-picture-container img {
+        width: 100%; /* Width of the pfp */
+        height: 100%; /* Height of the pfp */
+        object-fit: cover;
+
+}
+
+@media (min-width: 2560px) { /* Bigger on bigger screens */
+    .profile-picture-container {
+        width: 200px; /* Width of the pfp container */
+        height: 200px /* Height of the pfp container */
+        }
+}
+
+.form {
+    margin: 0 auto; /* Centres the form horizontally */
+}
+
+.form h1 {
+    text-align: center; /* Centres the heading text */
+    font-family: "Inter", sans-serif;
+    font-weight: bold; /* Bold font for text */
+    margin: 50px 0 0 0; /* Space above the heading */
+}
+
+
+.inputs {
+    display: flex; /* Turns the container into a flexbox */
+    flex-direction: column; /* Stacks everything vertically */
+    align-items: center; /* Centres the items horizontally */
+}
+
+.inputs a {
+    font-family: "Outfit", sans-serif; /* Font of the navbar text */
+    text-align: left; /* Aligns the text to the left on the input boxes */
+    width: 310px; /* width of the input container */
+    box-sizing: border-box;
+    font-size: 1.1rem; /* Font size of the input headings */
+    margin: 30px 0 0 0; /* Space above the input headings */
+    font-weight: 400;
+}
+
+.inputs input {
+    width: 310px; /* width of the input boxes */
+    padding: 12px 10px; /* Space around the input text */
+    margin: 9px 0 0 0; /* Space above input boxes */
+    box-sizing: border-box;
+    font-size: 0.9rem;
+    border: 1px solid var(--nav_bar_background); /* colour of the border around the boxes | 1px worth of width */
+    border-radius: 5px; /* Corners of the input boxes */
+}
+
+
+.form_btn {
+    margin-top: 30px; /* Space above the submit button */
+    width: 310px; /* Width of the button */
+    padding: 10px 10px; /* Space around button text */
+    border-radius: 15px; /* Corners of the button */
+    background-color: black; /* Background color of the button */
+    border: 1px solid black;
+    outline: none; /* Stops weird clicking animation */
+    color: white; /* Text colour */
+    font-size: 1rem; /* Size of text */
+    font-weight: bold; /* Bold font for the text */
+    transition: background-color 0.25s ease; /* smooth transition in 0.25s */
+}
+
+.form_btn:hover {
+    background-color: var(--nav_button_background_hover); /* Changes background colour when hovered over */
+    border: 1px solid var(--nav_button_background); /* Changes border colour when hovered over */
+}
+
+.form_btn:active {
+    transform: scale(0.95); /* Makes the button shrink when clicked */
+}
+
+.inputs a.photo_warning {
+    margin: 6px 0 0 0; /* Little space above the warning */
+}
+
+.account-album-form {
+    display: flex; /* Turns the form into a flexbox */
+    flex-direction: column; /* Stacks everything vertically */
+    align-items: center; /* Centres the items horizontally */
+}
+
+.account-album-form a {
+    font-family: "Outfit", sans-serif; /* Font of the album form text */
+    text-align: left; /* Aligns the text to the left of the input boxes */
+    width: 310px; /* Width of the text container */
+    box-sizing: border-box;
+    font-size: 1.1rem; /* Font size of the input headings */
+    margin: 20px 0 0 0; /* Space above the input headings */
+    font-weight: 400; /* Makes the text normal weight */
+}
+
+.account-album-form input {
+    width: 310px; /* Width of the input boxes */
+    padding: 12px 10px; /* Space around the input text */
+    margin: 7px 0 0 0; /* Space above the input boxes */
+    box-sizing: border-box;
+    font-size: 0.9rem; /* Font size of the text entered into the boxes */
+    border: 1px solid var(--nav_bar_background); /* Colour of the border around the boxes | 1px worth of width */
+    border-radius: 4px; /* Corners of the input boxes */
+}
+
+
+.account-users-form {
+    display: flex; /* Turns the form into a flexbox */
+    flex-direction: column; /* Stacks everything vertically */
+    align-items: flex-start; /* Keeps everything on the left */
+}
+
+.profile-section {
+    margin-bottom: 45px; /* Space under the profile picture section */
+}
+
+#profile-picture-area {
+    margin-top: 15px; /* Space above the choose file box */
+}
+
+#profile-picture-area input {
+    margin-bottom: 10px; /* Space between the file box and submit button */
+}
+
+.account-users-form h1 {
+    font-family: "Inter", sans-serif; /* Font of the username */
+    font-weight: bold; /* Makes the username bold */
+    width: 310px; /* Width of the username */
+    margin: 0 0 15px 0; /* Space underneath the username */
+    font-size: 1.9rem;
+    text-align: center;
+}
+
+.account-users-form input {
+    width: 310px; /* Width of the input boxes */
+    padding: 12px 10px; /* Space around the input text */
+    box-sizing: border-box;
+    font-size: 0.9rem; /* Font size of the text inside the boxes */
+    border: 1px solid var(--nav_bar_background); /* Colour of the border around the boxes */
+    border-radius: 4px; /* Corners of the input boxes */
+}
+
+#profile-picture {
+    width: 310px; /* Makes the upload file box wider */
+}
+
+.account-users-form p,
+.account-detail > p {
+    font-family: "Outfit", sans-serif; /* Font of the account details */
+    text-align: center; /* Aligns the text to the left */
+    width: 310px; /* Width of the text */
+    box-sizing: border-box;
+    font-size: 1.3rem; /* Size of the account details */
+    font-weight: 400;
+    margin: 0 0 20px 0; /* Space underneath the details */
+}
+
+.account-detail {
+    margin-bottom: 35px; /* Space underneath each account detail */
+}
+
+.account-detail:last-child {
+    margin-bottom: 0; /* Stops extra space after the last section */
+}
+
+.account_btn {
+    margin-top: 18px; /* Space above the buttons */
+    width: 310px; /* Width of the button */
+    padding: 10px 10px; /* Space around the button text */
+    border-radius: 15px; /* Corners of the button */
+    background-color: black; /* Background colour of the button */
+    border: 1px solid black;
+    outline: none; /* Stops the weird outline when clicking */
+    color: white; /* Text colour */
+    font-size: 1rem; /* Size of the text */
+    font-weight: bold; /* Makes the text bold */
+    transition: background-color 0.25s ease; /* Makes the colour change smoothly */
+}
+
+.account_btn:active {
+    transform: scale(0.95); /* Makes the button shrink when clicked */
+}
+
+.account_pfp_btn:active {
+    transform: scale(0.95); /* Makes the button shrink when clicked */
+}
+
+.account-detail {
+    margin-bottom: 55px; /* Space underneath each account detail */
+}
+
+.account-detail:last-child {
+    margin-bottom: 0; /* Stops extra space after the last section */
+}
+
+.change-btn {
+    margin-top: 5px; /* Moves the original buttons up */
+}
+
+
+.album-row img {
+    width: 70px; /* Width of the pfp container */
+    height: 70px; /* Height of the pfp container */
+}
+
+.album-row span {
+    font-family: "Outfit", sans-serif; /* Font of the account details */
+    font-size: 1.4rem; /* Size of the account details */
+    font-weight: 400;
+}
+
+.section-header {
+    font-family: "Inter", sans-serif;
+    font-weight: bold; /* Bold font for text */
+    text-align: center;
+    margin: 0 0 23px 0;
+    font-size: 2rem;
+}
+
+.deletion_button {
+    margin-top: 18px; /* Space above the buttons */
+    width: 310px; /* Width of the button */
+    padding: 10px 10px; /* Space around the button text */
+    border-radius: 15px; /* Corners of the button */
+    outline: none; /* Stops the weird outline when clicking */
+    color: white; /* Text colour */
+    font-size: 1rem; /* Size of the text */
+    font-weight: bold; /* Makes the text bold */
+    transition: background-color 0.25s ease; /* Makes the colour change smoothly */
+}
+
+.default-color {
+    background-color: var(--delete_button_background_unavailable);
+    border: 1px solid var(--delete_button_background_unavailable);
+}
+
+.changed-color {
+    background-color: var(--nav_button_background);
+    border: 1px solid var(--nav_button_background);
+}
+
+
+.deletion_button.changed-color:active {
+    transform: scale(0.95);
+}
+.sub_cover_container {
+    width: 100px; /* Width of the pfp container */
+    height: 100px; /* Height of the pfp container */
+    overflow: hidden; /* Hides the edges */
+    border-radius: 8%; /* Turns the photo into a circle */
+    border: 1.8px solid var(--text);
+}
+
+
+.sub_cover_container img {
+    width: 100%; /* Width of the pfp */
+    height: 100%; /* Height of the pfp */
+    object-fit: cover;
+}
+
+.sub_album_details {
+    display: flex; /* Puts the photo and details next to each other */
+    align-items: center; /* Vertically centres the details next to the photo */
+    gap: 18px; /* Adds space between the photo and details */
+}
+
+.sub_album_details section {
+    min-width: 0;
+}
+
+.sub_album_details p,
+.none_selected {
+    font-family: "Outfit", sans-serif;
+    text-align: left;
+    font-size: 1.3rem;
+    font-weight: 400;
+
+    margin: 0;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.account_buttons {
+    display: flex;
+    justify-content: space-between; /* Push first item left, last item right */
+    align-items: center;
+
+    gap: 105px;
+}
+
+
+.account-right {
+    width: 18%; /* Makes the saved albums section use the available space */
+}
+
+
+#album-list {
+    display: flex;
+    flex-direction: column; /* Puts each album underneath the previous album */
+    gap: 16px; /* Keeps the albums close together */
+    padding-right: 10px; /* Adds space between the album cards and scrollbar */
+
+    max-height: 886px; /* Limits the album list to a maximum height of 600px */
+    overflow-y: auto; /* Adds a vertical scrollbar when there are more albums than fit */
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+}
+
+.album-row {
+    display: flex;
+    align-items: center; /* Vertically centres the album information */
+
+    padding: 9px 13px; /* Keeps the album row compact */
+
+    background-color: #f7f7f7; /* Gives each album a subtle background */
+    border: 1px solid #d6d6d6; /* Adds a light border */
+    border-radius: 8px; /* Slightly rounds the corners */
+
+    cursor: pointer; /* Shows that the album can be clicked */
+
+    transition: background-color 0.2s ease; /* Smooths the hover effect */
+}
+
+.album-row:hover {
+    background-color: #e3e1e1; /* Slightly darkens the album when hovered */
+}
+
+
+.album-row.selected {
+    background-color: #e3e1e1; /* Keeps the selected album highlighted */
+}
+
+.album-row img {
+    width: 64px; /* Width of the album cover */
+    height: 64px; /* Height of the album cover */
+    object-fit: cover; /* Makes the image fill the cover */
+    border-radius: 5px; /* Slightly rounds the cover corners */
+    flex-shrink: 0; /* Stops the cover from becoming smaller */
+}
+
+.album-info {
+    min-width: 0; /* Allows the text to fit inside the available space */
+    margin-left: 12px; /* Adds space between the cover and text */
+}
+
+.album-info h2 {
+    margin: 1px 0; /* Removes unnecessary heading spacing */
+    font-family: "Outfit", sans-serif; /* Sets the font */
+    font-size: 1rem; /* Keeps the album title compact */
+    font-weight: 600; /* Makes the title stand out */
+    text-align: left;
+}
+
+.album-info p {
+    margin: 1px 0; /* Keeps the information close together */
+    font-family: "Outfit", sans-serif; /* Sets the font */
+    font-size: 0.87rem; /* Makes the details smaller */
+    text-align: left;
+}
+
+.album-info p:last-child {
+    color: #3D3D3D; /* Makes the extra information less prominent */
+    font-size: 0.77rem; /* Makes the final line smaller */
+}
+
+
+/* Styles the scrollbar inside the album list */
+#album-list::-webkit-scrollbar {
+    width: 6px; /* Sets the width of the scrollbar */
+}
+
+/* Styles the part of the scrollbar that can be dragged */
+#album-list::-webkit-scrollbar-thumb {
+    background: #c0c0c0; /* Gives the scrollbar handle a subtle light grey colour */
+    border-radius: 10px; /* Rounds the scrollbar handle */
+}
+
+/* Changes the scrollbar when the user hovers over it */
+#album-list::-webkit-scrollbar-thumb:hover {
+    background: #999999; /* Darkens the scrollbar handle when hovered */
+}
+
+
+/* Flash Messages Styling */
+.flash-messages {
+    list-style: none;
+
+}
+
+.flash {
+    list-style: none;
+    text-align: center;
+    font-family: "Outfit", sans-serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+
+    border-radius: 8px;
+
+    padding: 12px 18px;
+    max-width: 25%;
+    margin: 18px auto;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.flash.success {
+    background-color: var(--flash-success-background-color);
+    color: var(--flash-success-text-color);
+
+    border: 1px solid var(--flash-success-background-color);
+    border-left: 7px solid var(--flash-success-border-color);
+}
+
+.flash.information {
+    background-color: var(--flash-information-background-color);
+    color: var(--flash-information-text-color);
+
+    border: 1px solid var(--flash-information-background-color);
+    border-left: 7px solid var(--flash-information-border-color);
+}
+
+.flash.error {
+    background-color: var(--flash-error-background-color);
+    color: var(--flash-error-text-color);
+
+    border: 1px solid var(--flash-error-background-color);
+    border-left: 7px solid var(--flash-error-border-color);
+}

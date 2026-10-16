@@ -1,0 +1,57 @@
+{%extends "base.html"%}
+
+{%block title%}Register{%endblock%}
+
+{%block content%}
+
+<form method="POST" class="form">
+    <h1>🎶 Register to Save Albums 🎶</h1>
+    <div class="inputs">
+        <a class="input_headings">Username:</a>
+        <input
+                name="username"
+                type="text"
+                id="username"
+                required
+        >
+
+        <a class="input_headings">Date of Birth:</a>
+        <input
+                name="DOB"
+                type="DATE"
+                id="DOB"
+                required
+        >
+
+        <a class="input_headings">Email:</a>
+        <input
+                name="email"
+                type="email"
+                id="email"
+                required
+        >
+
+        <a class="input_headings">Password:</a>
+        <input
+                name="password"
+                type="password"
+                id="password"
+                required
+        >
+
+        <a class="input_headings">Confirm Password:</a>
+        <input
+                name="confirm_password"
+                type="password"
+                id="confirm_password"
+                required
+        >
+
+         <button type="submit" class="form_btn">Register</button>
+
+    </div>
+</form>
+
+</section>
+
+{%endblock%}
