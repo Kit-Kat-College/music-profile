@@ -265,6 +265,6 @@ def account():
                 flash("Please enter exactly 'DELETE' in order to delete your account", "success")
                 return redirect(url_for('catalogues.account'))
 
-        if form_type == 'album-input':
+
 
     return render_template("account.html", user=user, saved_albums=saved_albums)
