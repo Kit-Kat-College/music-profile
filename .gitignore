@@ -11,4 +11,3 @@ idea/
 
 # Ignore database
 !/website/database.db
-!/website/db.py
